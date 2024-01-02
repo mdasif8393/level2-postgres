@@ -81,8 +81,61 @@ insert into user3 values (1, 'abc', 'abc@gmail.com')
 select username from user3;
 
 -- insert another way
-INSERT INTO user3 (user_id, username, email, age) VALUES  (2, "asif2", "asif2@gmail.com", 19)
+INSERT INTO user3 (user_id, username, email, age) VALUES (2, "asif2", "asif2@gmail.com", 19)
 
+-- insert another way
+INSERT INTO user3
+VALUES
+(2, 'abc2', 'abc2@gmail.com'),
+(3, 'abc3', 'abc3@gmail.com')
+
+-- ALTER to all password column
+ALTER TABLE user3
+    ADD COLUMN password VARCHAR(255) DEFAULT 'admin123' NOT NULL
+
+-- ALter to remove a column
+ALTER TABLE user3
+    DROP COLUMN password1
+
+-- Alter add demo column
+ALTER TABLE user3
+    ADD COLUMN demo int
+
+--Alter demo column to FLOAT
+ALTER TABLE user3
+    ALTER COLUMN demo type FLOAT(4)
+
+-- change demo column databas type text
+ALTER TABLE user3
+    ALTER COLUMN demo TYPE TEXT
+
+-- set default value to demo COLUMN
+ALTER TABLE user3
+    ALTER COLUMN demo SET DEFAULT 'bandladesh'
+
+-- remove default value from demo column
+ALTER TABLE user3
+    ALTER COLUMN demo drop DEFAULT
+
+-- rename demo column to country
+ALTER TABLE user3
+    RENAME COLUMN demo TO country
+
+-- set country column not NULL
+ALTER TABLE user3
+    ALTER COLUMN country set not null;
+
+-- drop not null
+ALTER TABLE user3
+    ALTER COLUMN country drop not null;
+
+-- make email column unique and give a NAME
+ALTER TABLE user3
+ADD CONSTRAINT unique_email UNIQUE(email);
+
+-- drop unique constraint from email column
+ALTER TABLE user3
+    DROP CONSTRAINT unique_email
 
 drop table "user"
 
