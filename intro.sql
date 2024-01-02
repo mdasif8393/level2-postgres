@@ -53,7 +53,7 @@
 ALTER table user1 
 add column password VARCHAR(255) DEFAULT 'admin123' not null; 
 
-ALTER table user1 add column demo int;
+ALTER table user1 add column country int;
 
 
 --Drop a COLUMN
@@ -64,26 +64,38 @@ drop column passwordf;
 
 --Change data type of a column
 ALTER TABLE user1
-    ALTER COLUMN demo type FLOAT(4);
+    ALTER COLUMN country type FLOAT(4);
 
 ALTER TABLE user1
-    ALTER COLUMN demo type text
+    ALTER COLUMN country type text
 
 -- set default value
 ALTER TABLE user1
-    alter column demo set DEFAULT 'bangladesh';
+    alter column country set DEFAULT 'bangladesh';
 
 --remove default VALUES
 ALTER TABLE user1
-    alter column demo drop DEFAULT;
+    alter column country drop DEFAULT;
 
 INSERT INTO user1 values(5, 'Muktadir5', 'Muktadir5@ph.com')
 
 -- rename a COLUMN
 ALTER TABLE user1
-    RENAME COLUMN demo to country;
+    RENAME COLUMN country to country;
 
-ALTER table user 1
+--Add a constraint
+ALTER table user1
     ALTER COLUMN country set not null;
+
+--Drop a constraint
+ALTER table user1
+    ALTER COLUMN country drop not null;
+
+ALTER TABLE user1
+    ADD CONSTRAINT unique_email UNIQUE(email);
+
+ALTER TABLE user1
+    DROP CONSTRAINT unique_email;
+
 
 Select * from user1;
