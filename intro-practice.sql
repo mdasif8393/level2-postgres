@@ -89,7 +89,10 @@ VALUES
 (2, 'abc2', 'abc2@gmail.com'),
 (3, 'abc3', 'abc3@gmail.com')
 
--- ALTER to all password column
+-- Delete tables all row
+TRUNCATE TABLE user1
+
+-- ALTER to add password column
 ALTER TABLE user3
     ADD COLUMN password VARCHAR(255) DEFAULT 'admin123' NOT NULL
 
@@ -138,7 +141,6 @@ ALTER TABLE user3
     DROP CONSTRAINT unique_email
 
 drop table "user"
-
 
 
 -- Display Table
