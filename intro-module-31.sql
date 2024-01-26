@@ -353,3 +353,38 @@ where emp_salary > 90000;
 select * from employees
 where salary < 90000 OR salary > 100000;
 
+select * from employees
+where joining_date >= '2024-01-01';
+
+select * from employees
+where name <> 'John Doe' AND salary > 80000;
+
+-- Order by desc async
+select * from employees
+    ORDER BY name DESC;
+
+SELECT * from employees
+    ORDER BY name ASC
+    LIMIT 10
+    OFFSET 1;
+
+-- highest salary
+SELECT * from employees
+    ORDER BY salary DESC
+    LIMIT 1;
+
+
+--3rd highest salary
+SELECT * from employees
+    ORDER BY salary DESC
+    OFFSET 2
+    LIMIT 1;
+
+
+--- IN
+select * from employees
+    where empid IN (2, 3, 5);
+
+-- NOT IN
+select * from employees
+    where empid NOT IN (2, 3, 5);
