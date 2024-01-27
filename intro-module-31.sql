@@ -388,3 +388,179 @@ select * from employees
 -- NOT IN
 select * from employees
     where empid NOT IN (2, 3, 5);
+
+-- BETWEEN
+select * from employees
+    where salary between 50000 AND 80000;
+
+-- LIKE
+select * from employees
+    where name LIKE '%a%';
+
+select * from employees
+ where name LIKE 'A%';
+
+select * from employees
+ where name LIKE '%a';
+
+select * from employees
+    where name LIKE '%mit%';
+
+-- specific position
+select * from employees
+    where name LIKE '_r%';
+
+select * from employees
+    where name LIKE '__r%';
+
+select * from employees
+    where name LIKE '__r%__';
+
+select * from employees
+    where name LIKE 'S%t';
+
+select * from employees
+    where name = NULL;
+
+
+--create deapertment1 and employees1 table
+CREATE TABLE department1(
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(100)
+);
+
+create table employees1(
+    employee_id INT PRIMARY KEY,
+    full_name VARCHAR(100),
+    department_id INT,
+    job_role VARCHAR(100),
+    manager_id INT,
+    FOREIGN KEY (department_id) REFERENCES department1(department_id)
+);
+
+INSERT INTO department1 (department_id, department_name) VALUES
+(1, 'Human Resources'),
+(2, 'Marketing'),
+(3, 'Finance'),
+(4, 'IT'),
+(5, 'Sales'),
+(6, 'Operations'),
+(7, 'Research and Development'),
+(8, 'Customer Support'),
+(9, 'Legal'),
+(10, 'Quality Assurance'),
+(11, 'Administration'),
+(12, 'Public Relations'),
+(13, 'Engineering'),
+(14, 'Product Management'),
+(15, 'Supply Chain'),
+(16, 'Data Science'),
+(17, 'Design'),
+(18, 'Business Development'),
+(19, 'Training and Development'),
+(20, 'Information Security'),
+(21, 'Facilities Management'),
+(22, 'Health and Safety'),
+(23, 'Public Affairs'),
+(24, 'Event Planning'),
+(25, 'Analytics'),
+(26, 'Procurement'),
+(27, 'Internal Audit'),
+(28, 'Project Management'),
+(29, 'Customer Success'),
+(30, 'Environmental Affairs');
+
+
+
+INSERT INTO employees1 (employee_id, full_name, department_id, job_role, manager_id) VALUES
+(1, 'John Smith', 1, 'HR Manager', NULL),
+(2, 'Jane Doe', 2, 'Marketing Specialist', 1),
+(3, 'Michael Johnson', 3, 'Financial Analyst', 1),
+(4, 'Emily Davis', 4, 'IT Specialist', 3),
+(5, 'David Wilson', 5, 'Sales Representative', 2),
+(6, 'Olivia Brown', 6, 'Operations Manager', NULL),
+(7, 'Robert Taylor', 7, 'R&D Scientist', 6),
+(8, 'Sophia Miller', 8, 'Customer Support Specialist', 6),
+(9, 'Daniel Anderson', 9, 'Legal Counsel', 6),
+(10, 'Ava Martinez', 10, 'QA Tester', 7),
+(11, 'Matthew Lee', 11, 'Administrative Assistant', 6),
+(12, 'Emma Harris', 12, 'PR Specialist', 11),
+(13, 'Christopher Clark', 13, 'Software Engineer', 4),
+(14, 'Isabella Turner', 14, 'Product Manager', 13),
+(15, 'Andrew White', 15, 'Supply Chain Coordinator', 6),
+(16, 'Oliver Hall', 16, 'Data Scientist', 13),
+(17, 'Amelia King', 17, 'Graphic Designer', 12),
+(18, 'Henry Green', 18, 'Business Development Manager', 6),
+(19, 'Mia Baker', 19, 'Training Coordinator', 11),
+(20, 'Ethan Carter', 20, 'Information Security Analyst', 13),
+(21, 'Liam Turner', 21, 'Facilities Manager', 6),
+(22, 'Charlotte Cooper', 22, 'Safety Specialist', 21),
+(23, 'Sebastian Hayes', 23, 'Public Affairs Coordinator', 12),
+(24, 'Harper Jenkins', 24, 'Event Planner', 23),
+(25, 'Aiden Lewis', 25, 'Analytics Specialist', 16),
+(26, 'Elizabeth Murphy', 26, 'Procurement Officer', 18),
+(27, 'Carter Reed', 27, 'Internal Auditor', 3),
+(28, 'Grace Fisher', 28, 'Project Manager', 14),
+(29, 'Owen Brooks', 29, 'Customer Success Manager', 8),
+(30, 'Lily Bennett', 30, 'Environmental Affairs Specialist', 27);
+
+select * from department1;
+
+select * from employees1;
+
+-- INNER JOIN
+select employees1.full_name, employees1.job_role, department1.department_name
+FROM employees1
+INNER JOIN department1 ON employees1.department_id = department1.department_id;
+
+select *
+FROM employees1
+INNER JOIN department1 ON employees1.department_id = department1.department_id;
+
+select employees1.full_name, employees1.job_role, department1.department_name
+FROM department1
+INNER JOIN employees1 ON department1.department_id = employees1.employee_id;
+
+--Left JOIN
+select * from employees1
+LEFT JOIN department1 ON employees1.employee_id = department1.department_id;
+
+--Right JOIN
+select * from employees1
+RIGHT JOIN department1 ON employees1.employee_id = department1.department_id;
+
+-- Full JOIN
+select * from employees1
+FULL JOIN department1 ON employees1.employee_id = department1.department_id;
+
+-- NATURAL JOIN
+select * from employees1
+NATURAL JOIN department1;
+
+-- CROSS JOIN
+select * from employees1
+NATURAL JOIN department1;
+
+
+
+
+
+--Aggregate FUNCTION
+select * from employees;
+
+select avg(salary) as averageSalary from employees;
+
+select Min(salary) as minimumSalary from employees;
+
+select Max(salary) as maxSalary from employees;
+
+select Sum(salary) as totalSalary from employees;
+
+--Group BY
+select deptid,  AVG(salary) from employees
+ GROUP BY deptid;
+
+select d.name, avg(e.salary), sum(e.salary), max(e.salary), min(e.salary) from employees as e 
+FULL JOIN departments as d ON d.deptid = e.deptid
+GROUP BY d.name;
+
