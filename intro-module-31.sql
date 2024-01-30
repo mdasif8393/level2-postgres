@@ -572,3 +572,35 @@ FULL JOIN employees as e on e.deptid = d.deptid
 GROUP BY d.deptid
 HAVING d.deptid < 20;
 
+
+
+
+
+
+-- sub queries
+select * from employees;
+
+select * from employees where salary = (
+    select max(salary) from employees
+);
+
+select * from employees where salary in (
+    select salary from employees where name like '%a%'
+);
+
+
+
+select * from employees where salary >(
+    select avg(salary) from employees
+);
+
+
+select email, (
+    select avg(salary) from employees
+) 
+    from employees;
+
+
+select deptID, avg_salary from (
+    select deptID, avg(salary) as avg_salary from employees group by deptID
+);
