@@ -562,5 +562,13 @@ select deptid,  AVG(salary) from employees
 
 select d.name, avg(e.salary), sum(e.salary), max(e.salary), min(e.salary) from employees as e 
 FULL JOIN departments as d ON d.deptid = e.deptid
-GROUP BY d.name;
+GROUP BY d.name
+HAVING avg(e.salary) > 70000;
+
+
+select d.name, avg(e.salary), sum(e.salary), max(e.salary), min(e.salary), count(*) from 
+departments as d
+FULL JOIN employees as e on e.deptid = d.deptid
+GROUP BY d.deptid
+HAVING d.deptid < 20;
 
