@@ -604,3 +604,17 @@ select email, (
 select deptID, avg_salary from (
     select deptID, avg(salary) as avg_salary from employees group by deptID
 );
+
+
+
+
+
+-- indexing
+explain ANALYSE select empid from employees;
+
+select * from employees;
+
+create index name_idx on employees(name);
+
+explain ANALYSE select empid, name, email from employees where name LIKE '%a%';
+
